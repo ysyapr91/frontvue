@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # frontvue
 
 > A Vue.js project
@@ -19,3 +20,6 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# frontvue
+>>>>>>> 3fdde86575c964bd93d9b56f68e34517b4569a88
