@@ -1,20 +1,20 @@
 <template>
     <div id="content">
-        <test>Content</test>
+        <testSlide>Slide</testSlide>
+        <testComponents>Components</testComponents>
     </div>
 </template>
 
 <script>
-import TestSlide from './test/TestSlide.vue'
-
 export default {
   name: 'Content',
   components: {
-    'test': TestSlide
+    'testSlide': () => import('./test/TestSlide.vue'),
+    'testComponents': () => import('./test/testComponents.vue')
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
   }
 }

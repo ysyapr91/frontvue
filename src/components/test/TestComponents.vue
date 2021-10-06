@@ -1,53 +1,43 @@
-<!-- transition 태그안에 데이터를 호출해 사용-->
+<!-- 다른 vue Component template를 호출하여 사용-->
 <template>
-    <div id="testSlide">
+    <div id="TestComponents">
         <div class="tabs" ref="tabbar">
             <div class="tabitem" :class="index === activetab ? 'active' : ''"  v-for="(tab, index) in items" @click="switchtab(index)" :key="index" ref="tab">{{tab}}</div>
             <div class="slider" :style="'transform:translateX(' + activetab * tabwidth + 'px)'"></div>
         </div>
         <div class="tabcontainer" ref="tcon">
-            <transition :name="transition" v-for="(tab, index) in items" :key="index">
-                <div class="tabpane" v-if="index === activetab">
-                    {{tab}} : Tab Content<br>
-                    [{{activetab}}]
-                </div>
-            </transition>
+            <component :is="whichStep"></component>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'TestSlide',
-  components: {},
+  name: 'TestComponents',
+  components: {
+    'test1': () => import('./Test1.vue'),
+    'test2': () => import('./Test2.vue'),
+    'test3': () => import('./Test3.vue')
+  },
   data () {
     return {
-      transition: 'slide-next',
       activetab: 0,
       tabwidth: 100,
-      items: ['a', 'b', 'c', 'd', 'e']
+      items: ['test1', 'test2', 'test3']
     }
   },
   methods: {
     switchtab (n) {
-      let scroll, scond
-      if (this.activetab > n) {
-        this.transition = 'slide-prev'
-        scroll = n - 1
-        if (scond) this.$refs.tab[scroll].scrollIntoView({behavior: 'smooth'})
-      } else if (this.activetab < n) {
-        this.transition = 'slide-next'
-        scroll = n + 1
-      }
-      scond = scroll >= 0 && scroll < this.items.length
-      if (scond) this.$refs.tab[scroll].scrollIntoView({behavior: 'smooth'})
-      this.$nextTick(_ => {
-        this.activetab = n
-      })
+      this.activetab = n
     }
   },
   mounted () {
     this.$refs.tabbar.style.setProperty('--tabwidth', this.tabwidth + 'px')
+  },
+  computed: {
+    whichStep () {
+      return this.items[this.activetab]
+    }
   }
 }
 </script>
@@ -90,7 +80,7 @@ export default {
   transition:.5s ease;
 }
 .tabcontainer {
-  height:200px;
+  height:500px;
   position: relative;
   min-height: 100%;
   width: 100%;

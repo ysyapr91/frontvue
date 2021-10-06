@@ -1,9 +1,7 @@
 <template>
     <div class="main">
         <main-header/>
-        <h3>{{ msg }}</h3>
         <main-content/>
-        <main-footer/>
     </div>
 </template>
 
@@ -21,8 +19,11 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: ''
     }
   }
 }
 </script>
+
+<style scoped>
+</style>
