@@ -1,36 +1,69 @@
 <template>
     <div id="test1">
-        <button type="button" @click="localApi">Call</button>
-        {{apiRes}}
+        <h3>LOGIN / LOGOUT TEST</h3>
+        ID : <input v-model="params.id" type="text">
+        <br/>
+        PW : <input v-model="params.password" type="password">
+        <br/>
+        <button type="button" @click="login">Login</button>
+        <br/>
+        {{apiMsg}}
+        <br/>
+        <br/>
+        <button type="button" @click="logout">Logout</button>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex'
+const envStore = 'envStore'
+const memberStore = 'memberStore'
 
 export default {
   name: 'test1',
   data () {
     return {
-      apiRes: ''
+      params: {
+        id: '',
+        password: ''
+      },
+      apiMsg: ''
     }
   },
   computed: {
+    ...mapGetters(envStore, {
+      apiHost: 'API_HOST'
+    }),
     hasResult: function () {
       return this.posts.length > 0
     }
   },
   methods: {
-    localApi () {
-      const url = 'http://localhost:8081/'
+    ...mapActions(memberStore, [
+      'actLogin',
+      'actLogout'
+    ]),
+    login () {
+      let _this = this
       axios
-        .get(url)
+        .post(this.apiHost + '/member/login', this.params)
         .then(function (res) {
-          console.log(res.data)
+          _this.apiMsg = res.data.msg
+          _this.loginSuccess(res.data.data)
         })
         .catch(function (err) {
-          console.log(err)
+          alert(err)
         })
+    },
+    loginSuccess (data) {
+      const payload = {
+        id: data.id
+      }
+      this.actLogin(payload)
+    },
+    logout () {
+      this.actLogout({})
     }
   }
 }

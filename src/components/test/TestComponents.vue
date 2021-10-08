@@ -6,7 +6,9 @@
             <div class="slider" :style="'transform:translateX(' + activetab * tabwidth + 'px)'"></div>
         </div>
         <div class="tabcontainer" ref="tcon">
-            <component :is="whichStep"></component>
+            <keep-alive>
+                <component :is="whichStep"></component>
+            </keep-alive>
         </div>
     </div>
 </template>
