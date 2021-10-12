@@ -1,6 +1,6 @@
 <template>
     <div id="test3">
-        <h3>LOGIN / LOGOUT TEST</h3>
+        <h3>API axios TEST</h3>
         <button type="button" @click="localApi">Call</button>
         {{apiRes}}
     </div>

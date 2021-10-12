@@ -11,6 +11,7 @@
         <br/>
         <br/>
         <button type="button" @click="logout">Logout</button>
+        <button type="button" @click="myinfo">MyInfo</button>
     </div>
 </template>
 
@@ -64,6 +65,16 @@ export default {
     },
     logout () {
       this.actLogout({})
+    },
+    myinfo () {
+      axios
+        .get(this.apiHost + '/member/myinfo')
+        .then(function (res) {
+          console.log(res.data)
+        })
+        .catch(function (err) {
+          alert(err)
+        })
     }
   }
 }

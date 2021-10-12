@@ -17,15 +17,15 @@
 export default {
   name: 'TestComponents',
   components: {
-    'test1': () => import('./Test1.vue'),
-    'test2': () => import('./Test2.vue'),
-    'test3': () => import('./Test3.vue')
+    'login': () => import('./Test1.vue'),
+    'mapList': () => import('./Test4.vue'),
+    'mapRegi': () => import('./Test5.vue')
   },
   data () {
     return {
       activetab: 0,
       tabwidth: 100,
-      items: ['test1', 'test2', 'test3']
+      items: ['mapRegi', 'mapList', 'login']
     }
   },
   methods: {
