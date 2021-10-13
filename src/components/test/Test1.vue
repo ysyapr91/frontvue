@@ -11,7 +11,6 @@
         <br/>
         <br/>
         <button type="button" @click="logout">Logout</button>
-        <button type="button" @click="myinfo">MyInfo</button>
     </div>
 </template>
 
@@ -59,22 +58,13 @@ export default {
     },
     loginSuccess (data) {
       const payload = {
-        id: data.id
+        id: data.id,
+        seq: data.seq
       }
       this.actLogin(payload)
     },
     logout () {
       this.actLogout({})
-    },
-    myinfo () {
-      axios
-        .get(this.apiHost + '/member/myinfo')
-        .then(function (res) {
-          console.log(res.data)
-        })
-        .catch(function (err) {
-          alert(err)
-        })
     }
   }
 }

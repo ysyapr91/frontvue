@@ -1,7 +1,7 @@
 <template>
     <div id="headers">
         <div v-if="loginYn">
-            <h3>[ {{id}} / {{loginDate}}]</h3>
+            <h3>[ {{id}} / {{seq}} / {{loginDate}}]</h3>
         </div>
         <div v-else>
             <h3>Header</h3>
@@ -19,6 +19,7 @@ export default {
     return {
       loginYn: false,
       id: '',
+      seq: '',
       loginDate: '',
       apiMsg: ''
     }

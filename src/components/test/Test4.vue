@@ -31,7 +31,7 @@ export default {
     list () {
       let _this = this
       axios
-        .get(this.apiHost + '/mindmap/list')
+        .post(this.apiHost + '/mindmap/list', {})
         .then(function (res) {
           console.log(res.data)
           _this.mapList = res.data.data

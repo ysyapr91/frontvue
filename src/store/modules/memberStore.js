@@ -3,6 +3,7 @@ const memberStore = {
   state: {
     loginYn: false,
     id: '',
+    seq: '',
     name: '',
     loginDate: ''
   },
@@ -16,6 +17,7 @@ const memberStore = {
     mutLogin: (state, payload) => {
       state.loginYn = true
       state.id = payload.id
+      state.seq = payload.seq
       state.loginDate = Date.now()
     },
     mutLogout: (state, payload) => {

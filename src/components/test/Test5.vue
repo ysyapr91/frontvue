@@ -5,7 +5,11 @@
         <br/>
         VALUE : <input v-model="params.value" type="text">
         <br/>
-        <button type="button" @click="add">Add</button>
+        <button type="button" @click="addMap">Add</button>
+        <br/><br/>
+        <div class="map-div" v-for="(map, index) in mapList" :key="index">
+            {{map.map_seq}} : {{map.title}} : {{map.value}}
+        </div>
     </div>
 </template>
 
@@ -20,8 +24,10 @@ export default {
     return {
       params: {
         title: '',
-        value: ''
+        value: '',
+        mem_seq: ''
       },
+      mapList: '',
       apiMsg: ''
     }
   },
@@ -31,14 +37,24 @@ export default {
     })
   },
   methods: {
-    add () {
+    list () {
       let _this = this
       axios
-        .post(this.apiHost + '/mindmap/register', this.params)
+        .post(this.apiHost + '/mindmap/list', {})
         .then(function (res) {
           console.log(res.data)
           _this.mapList = res.data.data
           _this.apiMsg = res.data.msg
+        })
+        .catch(function (err) {
+          alert(err)
+        })
+    },
+    addMap () {
+      axios
+        .post(this.apiHost + '/mindmap/register', this.params)
+        .then(function (res) {
+          console.log(res.data)
         })
         .catch(function (err) {
           alert(err)
