@@ -1,6 +1,8 @@
 <template>
     <div id="test5">
         <h3>Mindmap regist TEST</h3>
+        PMAP_SEQ : <input v-model="params.pmap_seq" type="text">
+        <br/>
         TITLE : <input v-model="params.title" type="text">
         <br/>
         VALUE : <input v-model="params.value" type="text">
