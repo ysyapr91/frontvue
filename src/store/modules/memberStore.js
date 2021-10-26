@@ -11,6 +11,7 @@ const memberStore = {
     getLoginYn: state => state.loginYn,
     getId: state => state.id,
     getName: state => state.name,
+    getSeq: state => state.seq,
     getLoginDate: state => state.loginDate
   },
   mutations: {
@@ -23,6 +24,9 @@ const memberStore = {
     mutLogout: (state, payload) => {
       state.loginYn = false
       state.id = ''
+      state.seq = ''
+      state.name = ''
+      state.loginDate = ''
     }
   },
   actions: {

@@ -21,10 +21,7 @@ export default {
   computed: {
     ...mapGetters(envStore, {
       apiHost: 'API_HOST'
-    }),
-    hasResult: function () {
-      return this.posts.length > 0
-    }
+    })
   },
   methods: {
     localApi () {

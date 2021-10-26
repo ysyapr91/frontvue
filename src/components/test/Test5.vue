@@ -19,6 +19,7 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 const envStore = 'envStore'
+const memberStore = 'memberStore'
 
 export default {
   name: 'test5',
@@ -36,7 +37,15 @@ export default {
   computed: {
     ...mapGetters(envStore, {
       apiHost: 'API_HOST'
+    }),
+    ...mapGetters(memberStore, {
+      getSeq: 'getSeq'
     })
+  },
+  watch: {
+    getSeq (val) {
+      this.params.mem_seq = val
+    }
   },
   methods: {
     list () {

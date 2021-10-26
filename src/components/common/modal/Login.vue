@@ -1,6 +1,6 @@
 <template>
-    <div id="test1">
-        <h3>LOGIN / LOGOUT TEST</h3>
+    <div id="loginModal">
+        <h3>LOGIN</h3>
         ID : <input v-model="params.id" type="text">
         <br/>
         PW : <input v-model="params.password" type="password">
@@ -8,9 +8,6 @@
         <button type="button" @click="login">Login</button>
         <br/>
         {{apiMsg}}
-        <br/>
-        <br/>
-        <button type="button" @click="logout">Logout</button>
     </div>
 </template>
 
@@ -21,7 +18,7 @@ const envStore = 'envStore'
 const memberStore = 'memberStore'
 
 export default {
-  name: 'test1',
+  name: 'loginModal',
   data () {
     return {
       params: {
@@ -38,8 +35,7 @@ export default {
   },
   methods: {
     ...mapActions(memberStore, [
-      'actLogin',
-      'actLogout'
+      'actLogin'
     ]),
     login () {
       let _this = this
@@ -54,14 +50,10 @@ export default {
         })
     },
     loginSuccess (data) {
-      const payload = {
+      this.actLogin({
         id: data.id,
         seq: data.seq
-      }
-      this.actLogin(payload)
-    },
-    logout () {
-      this.actLogout({})
+      })
     }
   }
 }

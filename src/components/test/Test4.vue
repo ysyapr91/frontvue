@@ -5,7 +5,7 @@
         <br/>
         {{listSize}}
         <div class="map-div" v-for="(map, index) in mapList" :key="index">
-            {{map.map_seq}} : {{map.title}} : {{map.value}}
+            [{{map.mem_seq}}] {{map.map_seq}} = {{map.pmap_seq}} : {{map.title}}
         </div>
     </div>
 </template>
@@ -53,7 +53,7 @@ export default {
       if (this.listSize > i) {
         // let seq = 0
         // let child = {}
-        console.log(this.mapList[i].map_seq + ':' + this.mapList[i].pmap_seq)
+        // console.log(this.mapList[i].map_seq + ':' + this.mapList[i].pmap_seq)
         this.inCycle(i + 1)
       }
     }
