@@ -1,10 +1,31 @@
 <template>
     <div id="headers">
         <div v-if="loginYn">
-            <h3>[ {{id}} / {{seq}} / {{loginDate}}]</h3>
+            <table class="header-table">
+                <tr>
+                    <td>
+                        <h3>[ {{id}} / {{seq}} / {{loginDate}}]</h3>
+                    </td>
+                    <td>
+                        <button type="button" @click="logout">Logout</button>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div v-else>
-            <h3>Header</h3>
+            <table class="header-table">
+                <tr>
+                    <td>
+                        <h3>Header</h3>
+                    </td>
+                    <td>
+                        <button type="button" @click="openModal('login')">Login</button>
+                    </td>
+                    <td>
+                        {{geAllOpen}}
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </template>
@@ -12,6 +33,7 @@
 <script>
 import { mapGetters } from 'vuex'
 const memberStore = 'memberStore'
+const modalStore = 'modalStore'
 
 export default {
   name: 'headers',
@@ -21,6 +43,7 @@ export default {
       id: '',
       seq: '',
       loginDate: '',
+      open: [],
       apiMsg: ''
     }
   },
@@ -29,17 +52,23 @@ export default {
       getLoginYn: 'getLoginYn',
       getId: 'getId',
       getLoginDate: 'getLoginDate'
+    }),
+    ...mapGetters(modalStore, {
+      geAllOpen: 'allOpen'
     })
   },
   watch: {
-    getLoginYn (val) {
-      this.loginYn = val
+    getLoginYn (val) { this.loginYn = val },
+    getId (val) { this.id = val },
+    getLoginDate (val) { this.loginDate = val },
+    geAllOpen (val) { this.open = val }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('memberStore/actLogout', '')
     },
-    getId (val) {
-      this.id = val
-    },
-    getLoginDate (val) {
-      this.loginDate = val
+    openModal (name) {
+      this.$store.dispatch('modalStore/open', name)
     }
   }
 }

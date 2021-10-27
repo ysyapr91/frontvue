@@ -1,25 +1,37 @@
 <template>
     <div class="main">
         <main-header/>
+        <button @click="open('login')">Open Simple Modal</button>
         <main-content/>
+        <modal/>
     </div>
 </template>
 
 <script>
-import MainHeader from './common/Header.vue'
-import MainContent from './Content.vue'
-import MainFooter from './common/Footer.vue'
+import { mapGetters } from 'vuex'
+const modalStore = 'modalStore'
 
 export default {
   name: 'Main',
   components: {
-    'main-header': MainHeader,
-    'main-content': MainContent,
-    'main-footer': MainFooter
+    'main-header': () => import('./common/Header.vue'),
+    'main-content': () => import('./Content.vue'),
+    'main-footer': () => import('./common/Footer.vue'),
+    'modal': () => import('./common/Modal.vue')
   },
   data () {
     return {
       msg: ''
+    }
+  },
+  computed: {
+    ...mapGetters(modalStore, {
+      apiHost: 'API_HOST'
+    })
+  },
+  methods: {
+    open (name) {
+      this.$store.dispatch('modalStore/open', name)
     }
   }
 }

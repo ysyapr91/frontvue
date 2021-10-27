@@ -1,5 +1,5 @@
 <template>
-    <div id="loginModal">
+    <div id="loginModal" name="login">
         <h3>LOGIN</h3>
         ID : <input v-model="params.id" type="text">
         <br/>

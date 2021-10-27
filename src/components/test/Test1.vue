@@ -62,6 +62,9 @@ export default {
     },
     logout () {
       this.actLogout({})
+    },
+    logout2 () {
+      this.$store.dispatch('memberStore/actLogout', '')
     }
   }
 }
