@@ -1,23 +1,15 @@
 const modalStore = {
   namespaced: true,
   state: {
-    open: [],
-    show: false
+    open: []
   },
   getters: {
     active: state => (state.open.length > 0 ? state.open[0] : null),
-    allOpen: state => state.open,
-    SHOW: state => state.show
+    allOpen: state => state.open
   },
   mutations: {
-    OPEN: (state, name) => {
-      state.show = true
-      state.open.unshift(name)
-    },
-    CLOSE: (state, name) => {
-      state.show = false
-      state.open = state.open.filter((e) => e !== name)
-    }
+    OPEN: (state, payload) => state.open.unshift(payload),
+    CLOSE: (state, payload) => (state.open = state.open.filter((e) => e !== payload))
   },
   actions: {
     open: ({ commit }, name) => commit('OPEN', name),

@@ -1,8 +1,9 @@
 <template>
-    <div name="modal" v-if="isOpen" :class="`modal-overlay ${isActive?'modal-overlay--active':''}`" @click.self="close()">
+    <div v-if="isOpen" :class="`modal-overlay ${isOpen?'modal-overlay--active':''}`" @click.self="close()">
         <div class="modal-wrapper">
             <button @click="close">X</button>
             <slot :close="close"></slot>
+            <component :is="whichModal"></component>
         </div>
         <slot name="child"></slot>
     </div>
@@ -11,20 +12,24 @@
 <script>
 export default {
   name: 'Modal',
-  props: {
-    name: { type: String, required: true }
+  components: {
+    'login': () => import('./Login.vue'),
+    'test': () => import('@/components/test/Test4.vue')
+  },
+  data () {
+    return {}
   },
   computed: {
-    isActive () {
-      return this.$store.getters['modalStore/active'] === this.name
-    },
     isOpen () {
-      return this.$store.getters['modalStore/allOpen'].includes(this.name)
+      return this.$store.getters['modalStore/active'] !== null
+    },
+    whichModal () {
+      return this.$store.getters['modalStore/active']
     }
   },
   methods: {
     close () {
-      this.$store.dispatch('modalStore/close', this.name)
+      this.$store.dispatch('modalStore/close', this.$store.getters['modalStore/active'])
     }
   },
   beforeDestroy () {
@@ -43,7 +48,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 1s ease-in-out;
   width: 100%;
 }
 .modal-overlay--active {

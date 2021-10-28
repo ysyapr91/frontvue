@@ -21,9 +21,6 @@
                     <td>
                         <button type="button" @click="openModal('login')">Login</button>
                     </td>
-                    <td>
-                        {{geAllOpen}}
-                    </td>
                 </tr>
             </table>
         </div>
@@ -33,7 +30,6 @@
 <script>
 import { mapGetters } from 'vuex'
 const memberStore = 'memberStore'
-const modalStore = 'modalStore'
 
 export default {
   name: 'headers',
@@ -52,16 +48,12 @@ export default {
       getLoginYn: 'getLoginYn',
       getId: 'getId',
       getLoginDate: 'getLoginDate'
-    }),
-    ...mapGetters(modalStore, {
-      geAllOpen: 'allOpen'
     })
   },
   watch: {
     getLoginYn (val) { this.loginYn = val },
     getId (val) { this.id = val },
-    getLoginDate (val) { this.loginDate = val },
-    geAllOpen (val) { this.open = val }
+    getLoginDate (val) { this.loginDate = val }
   },
   methods: {
     logout () {
