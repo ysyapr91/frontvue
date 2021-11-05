@@ -47,12 +47,14 @@ export default {
     ...mapGetters(memberStore, {
       getLoginYn: 'getLoginYn',
       getId: 'getId',
+      getSeq: 'getSeq',
       getLoginDate: 'getLoginDate'
     })
   },
   watch: {
     getLoginYn (val) { this.loginYn = val },
     getId (val) { this.id = val },
+    getSeq (val) { this.seq = val },
     getLoginDate (val) { this.loginDate = val }
   },
   methods: {

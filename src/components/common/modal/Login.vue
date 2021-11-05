@@ -43,7 +43,7 @@ export default {
         .post(this.apiHost + '/member/login', this.params)
         .then(function (res) {
           _this.apiMsg = res.data.msg
-          _this.loginSuccess(res.data.data)
+          if (res.data.code === 0) _this.loginSuccess(res.data.data)
         })
         .catch(function (err) {
           alert(err)

@@ -1,6 +1,7 @@
 <template>
     <div class="main">
         <main-header/>
+        <nav/>
         <main-content/>
         <modal/>
     </div>
@@ -13,6 +14,7 @@ export default {
     'main-header': () => import('./common/Header.vue'),
     'main-content': () => import('./Content.vue'),
     'main-footer': () => import('./common/Footer.vue'),
+    'nav': () => import('./common/nav/Navbar.vue'),
     'modal': () => import('./common/modal/Modal.vue')
   }
 }

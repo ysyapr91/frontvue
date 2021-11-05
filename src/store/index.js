@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import envStore from '@/store/modules/envStore.js'
 import userStore from '@/store/modules/userStore.js'
 import postStore from '@/store/modules/postStore.js'
+import viewStore from '@/store/modules/viewStore.js'
 import memberStore from '@/store/modules/memberStore.js'
 import modalStore from '@/store/modules/modalStore.js'
 
@@ -13,6 +14,7 @@ const store = new Vuex.Store({
     envStore: envStore,
     userStore: userStore,
     postStore: postStore,
+    viewStore: viewStore,
     memberStore: memberStore,
     modalStore: modalStore
   }
