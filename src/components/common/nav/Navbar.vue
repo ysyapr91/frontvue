@@ -1,5 +1,6 @@
 <template>
     <div id="navbar">
+        {{navShow}}
         <h3>Navbar</h3>
     </div>
 </template>
@@ -11,17 +12,13 @@ export default {
     return {}
   },
   computed: {
-    isOpen () {
-      return this.$store.getters['modalStore/active'] !== null
-    },
-    whichModal () {
-      return this.$store.getters['modalStore/active']
+    navShow () {
+      return this.$store.getters['viewStore/navState']
     }
   },
+  watch: {
+  },
   methods: {
-    close () {
-      this.$store.dispatch('modalStore/close', this.$store.getters['modalStore/active'])
-    }
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div id="headers">
+        <div id="navBtn" class="navBtn" >nav</div>
         <div v-if="loginYn">
             <table class="header-table">
                 <tr>
@@ -33,6 +34,7 @@ const memberStore = 'memberStore'
 
 export default {
   name: 'headers',
+  components: {},
   data () {
     return {
       loginYn: false,

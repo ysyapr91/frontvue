@@ -1,0 +1,11 @@
+body {
+  margin: 0
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+}
+.navBtn {
+  background-image: url(../icon/nav_icon.png);
+}
