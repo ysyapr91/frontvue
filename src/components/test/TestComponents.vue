@@ -19,13 +19,14 @@ export default {
   components: {
     'login': () => import('./Test1.vue'),
     'mapList': () => import('./Test4.vue'),
-    'mapRegi': () => import('./Test5.vue')
+    'mapRegi': () => import('./Test5.vue'),
+    'calendar': () => import('./Test6.vue')
   },
   data () {
     return {
       activetab: 0,
       tabwidth: 100,
-      items: ['mapRegi', 'mapList', 'login']
+      items: ['mapRegi', 'mapList', 'login', 'calendar']
     }
   },
   methods: {

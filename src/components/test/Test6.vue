@@ -62,11 +62,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapActions, mapGetters } from 'vuex'
-const envStore = 'envStore'
-const memberStore = 'memberStore'
-
 var date = new Date()
 var dd = ('0' + date.getDate()).slice(-2)
 var mm = ('0' + (date.getMonth() + 1)).slice(-2)
